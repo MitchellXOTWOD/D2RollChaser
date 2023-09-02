@@ -1,16 +1,17 @@
 import '@styles/globals.css';
-import { Children } from 'react';
 import Navbar from '@components/Navbar';
    
 const RootLayout = ({children}) => {
 return (
     <html lang="en">
-        
-        <body>
-        <Navbar/>
+        <head>
+                  <title>D2 Roll Chaser</title>
+        </head>
+        <body className='text-center'>
+            <Navbar/>
             <div className="main"></div>
-            <main className='app'>
-                {children}
+            <main className='app'>   
+            {children}           
             </main>
         </body>
     </html>
