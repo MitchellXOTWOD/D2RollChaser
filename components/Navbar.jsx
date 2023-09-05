@@ -12,7 +12,7 @@ const Navbar = () => {
             height={50}
             className="object-contain w-fit h-fit">
             </Image>
-            <p className="text-white text-3xl">D2 Roll Chaser</p>
+            <p className=" text-white text-3xl">D2 Roll Chaser</p>
         </Link>
     </nav>
   )
