@@ -1,17 +1,19 @@
 import '@styles/globals.css';
-import Navbar from '@components/Navbar';
+import Navbar from '@components/navbar/Navbar';
+import Home from './page';
+import Sidebar from '@components/sidebar/Sidebar';
    
-const RootLayout = ({children}) => {
+const RootLayout = () => {
 return (
-    <html lang="en">
+    <html lang="en" className='h-full'>
         <head>
                   <title>D2 Roll Chaser</title>
         </head>
-        <body className='text-center'>
+        <body className='text-center h-full'>
             <Navbar/>
-            <div className="main"></div>
-            <main className='app'>   
-            {children}           
+            <main className='app h-full'>  
+            <Sidebar/> 
+            <Home/>          
             </main>
         </body>
     </html>

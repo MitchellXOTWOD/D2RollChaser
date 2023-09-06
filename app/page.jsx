@@ -3,7 +3,7 @@ import "@styles/globals.css"
 
 const Home = () => {
     return (
-      <div>
+      <div className="h-full bg-dark">
             <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full" onClick={getWeapons}>getWeapons</button>
       </div>
     )
