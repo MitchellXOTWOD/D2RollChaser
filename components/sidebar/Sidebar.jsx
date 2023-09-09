@@ -18,7 +18,7 @@ const Sidebar = ({setSelectedItem}) => {
   }, [])
 
   return (
-    <aside className="absolute bg-slate-800 w-80 h-full ">
+    <aside className="absolute bg-slate-800 w-80 h-full overflow-auto scrollbar-thin scrollbar-thumb-gray-800 scrollbar-track-gray-400">
       <WeaponList weapons={weapons} setSelectedItem={setSelectedItem}/>
     </aside>
   )
