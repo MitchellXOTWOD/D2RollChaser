@@ -5,6 +5,7 @@ import { bungieAPI } from '@api/bungieApi'
 
 const WeaponTile = ({weapon}) => {
 
+  //formatted similar to the manifest
   const weaponIconPath = weapon.displayProperties.icon;
   const WeaponIcon = `${bungieAPI}${weaponIconPath}`;
 

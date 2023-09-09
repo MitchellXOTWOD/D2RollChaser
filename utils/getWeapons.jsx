@@ -40,14 +40,12 @@ export const getWeapons = async () => {
             const item = itemData[key];
             const itemTier = item.inventory.tierTypeName;
             const itemType = item.itemType;
-            const itemSubType = item.itemTypeDisplayName;
 
+            //ItemType 3 is weapon. We want all weapons that are legendary
             if (itemTier === 'Legendary' && itemType === 3) {
                 legendaryWeaponArray.push(item);
             }
         }
-
-        console.log(legendaryWeaponArray)
 
         return legendaryWeaponArray;
 
