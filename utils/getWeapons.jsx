@@ -1,69 +1,59 @@
 "use client"
 
-import { bungieAPI, manifestAPI } from '@api/bungieApi'
+import { bungieAPI, manifestAPI } from '@api/bungieApi';
 
-const getWeapons = async () => {
+// Define the function to get weapons
+export const getWeapons = async () => {
+    try {
+        // Fetch the manifest data
+        const manifestResponse = await fetch(`${manifestAPI}`, {
+            method: 'GET',
+            headers: {
+                'X-API-Key': 'e6440ecb340443479d9cdee3794be2d1'
+            }
+        });
 
-    //fetch the manifest data
-    fetch(
-        `${manifestAPI}`,
-        {method: 'GET',
-         headers: {
-            'X-API-Key': 'e6440ecb340443479d9cdee3794be2d1'
-        }
-    })
-    .then((manifestResponse) => {
-        //check for error
+        // Check for error
         if (!manifestResponse.ok) {
             throw new Error('Failed to fetch manifest data');
         }
-        //return json
-        return manifestResponse.json();
-        })
 
-    .then(manifestData => {
-        //handle successful call
+        // Return JSON data
+        const manifestData = await manifestResponse.json();
+
+        // Handle successful call
         const itemDataPath = manifestData.Response.jsonWorldComponentContentPaths.en.DestinyInventoryItemDefinition;
-        //get the url of the weapon data using the manifest data to get the hash of said weapon
         const itemDataUrl = `${bungieAPI}${itemDataPath}`;
 
-        fetch(itemDataUrl, {method: 'GET'})
+        const itemResponse = await fetch(itemDataUrl, { method: 'GET' });
+
+        if (!itemResponse.ok) {
+            throw new Error('Failed to fetch item data');
+        }
         
-        .then((itemResponse) => {
-            if (!itemResponse.ok) {
-                throw new Error('Failed to fetch item data');
+        const itemData = await itemResponse.json();
+
+        const legendaryWeaponArray = [];
+
+        for (const key in itemData)
+        {
+            const item = itemData[key];
+            const itemTier = item.inventory.tierTypeName;
+            const itemType = item.itemType;
+            const itemSubType = item.itemTypeDisplayName;
+
+            if (itemTier === 'Legendary' && itemType === 3) {
+                legendaryWeaponArray.push(item);
             }
+        }
 
-            return itemResponse.json();
-        })
+        console.log(legendaryWeaponArray)
 
-        //return only the name of the items
-        .then((itemData) => {
-            for(const key in itemData){
-                const item = itemData[key]
-                //guarentee a string and not a null value
-                const itemTier = item.inventory.tierTypeName;
-                //item type 3 is weapon
-                const itemType = item.itemType;
+        return legendaryWeaponArray;
 
-                const itemSubType = item.itemTypeDisplayName;
-
-                if(itemTier == "Legendary" && itemType == 3)
-                {
-                    console.log('Item Name: ', item.displayProperties.name,
-                    '\nWeapon Type: ', itemSubType,
-                    '\nItem: ', item)
-                }                 
-            }
-        })
-
-        .catch((error) => {
-            console.error('There was a problem fetching the item data: ', error);
-        });
-    })
-    .catch(error => {
-        console.error('There was a problem with the fetch operation:', error);
-    })
-}
-
-export default getWeapons
+    } 
+    
+    catch (error) {
+        console.error('Error:', error);
+    }
+};

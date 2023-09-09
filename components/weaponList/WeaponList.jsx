@@ -1,9 +1,15 @@
 import React from 'react'
 import WeaponTile from './weapon_tile/WeaponTile'
 
-const WeaponList = () => {
+const WeaponList = ({weapons, setSelectedItem}) => {
+
   return (
-    <div><WeaponTile/></div>
+    <div className='mt-7'>
+      {weapons.map((weapon, index)=>
+      <div key={index} onClick={() => setSelectedItem(weapon)}>
+        <WeaponTile weapon={weapon}/>
+      </div>)}
+    </div>
   )
 }
 
