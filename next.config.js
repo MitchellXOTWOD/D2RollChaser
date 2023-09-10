@@ -3,5 +3,5 @@ const nextConfig = {}
 
 module.exports =
 {images: {
-    domains: ['www.bungie.net'],
+    domains: ['www.bungie.net', 'www.bungie.netundefined'],
 }}

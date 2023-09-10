@@ -20,6 +20,7 @@ export const getWeapons = async () => {
 
         // Return JSON data
         const manifestData = await manifestResponse.json();
+        
 
         // Handle successful call
         const itemDataPath = manifestData.Response.jsonWorldComponentContentPaths.en.DestinyInventoryItemDefinition;
@@ -50,6 +51,7 @@ export const getWeapons = async () => {
         const sortedLegendaryWeaponArray = legendaryWeaponArray.sort((a, b) => a.displayProperties.name.localeCompare(b.displayProperties.name));
 
         return sortedLegendaryWeaponArray;
+        
 
     } 
     

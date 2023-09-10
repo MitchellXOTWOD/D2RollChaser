@@ -24,9 +24,9 @@ const Sidebar = ({setSelectedItem}) => {
 
   return (
     <>
-      {openSidebar && <aside className="absolute bg-slate-800 w-full h-full 
+      {openSidebar && <aside className="bg-slate-800 w-full h-screen  
       overflow-auto scrollbar-thin scrollbar-thumb-gray-800 scrollbar-track-gray-400
-      md:w-80">
+      md:w-fit min-w-fit">
         <button onClick={toggleSidebar} className="md:hidden rounded-none bg-blue-500 mt-3 w-1/2"> Close </button>
         <WeaponList weapons={weapons} setSelectedItem={setSelectedItem}/>
       </aside>}
