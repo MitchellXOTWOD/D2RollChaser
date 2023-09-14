@@ -32,7 +32,7 @@ const Sidebar = ({setSelectedItem}) => {
         <WeaponList weapons={weapons} setSelectedItem={setSelectedItem} toggleSidebar={toggleSidebar}/>
       </aside>}
 
-      {!openSidebar && <button onClick={toggleSidebar} className="md:hidden rounded-none bg-blue-500 mt-3 w-1/2"> Weapons </button>}
+      {!openSidebar && <button onClick={toggleSidebar} className="md:hidden rounded-none bg-blue-500 mt-3 w-3/4"> Weapons </button>}
     </>
   )
 }
