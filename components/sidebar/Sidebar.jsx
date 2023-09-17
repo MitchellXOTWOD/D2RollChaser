@@ -6,7 +6,7 @@ import { getWeapons } from "@utils/getWeapons"
 
 const Sidebar = ({setSelectedItem}) => {
   const [weapons, setWeapons] = useState([]) //empty array for initial state
-  const [openSidebar, setOpenSidebar] = useState([true]);
+  const [openSidebar, setOpenSidebar] = useState(true);
 
   const toggleSidebar = () => {
     setOpenSidebar(!openSidebar);
