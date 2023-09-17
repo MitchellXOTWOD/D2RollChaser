@@ -3,7 +3,7 @@
 import { bungieAPI, manifestAPI } from '@api/bungieApi';
 
 // Define the function to get weapons
-export const getWeapons = async () => {
+export const getWeaponPerks = async () => {
     try {
         // Fetch the manifest data
         const manifestResponse = await fetch(`${manifestAPI}`, {
@@ -34,24 +34,22 @@ export const getWeapons = async () => {
         
         const itemData = await itemResponse.json();
 
-        const legendaryWeaponArray = [];
+        const perkList = [];
 
         for (const key in itemData)
         {
             const item = itemData[key];
-            const itemTier = item.inventory.tierTypeName;
-            const itemType = item.itemType;
+            const itemTypeDisplayName = item.itemTypeDisplayName;
 
             //ItemType 3 is weapon. We want all weapons that are legendary
-            if (itemTier === 'Legendary' && itemType === 3) {
-                legendaryWeaponArray.push(item);
+            if(itemTypeDisplayName=="Magazine"){
+                perkList.push(item);
             }
+                
+            
         }
-
-        const sortedLegendaryWeaponArray = legendaryWeaponArray.sort((a, b) => a.displayProperties.name.localeCompare(b.displayProperties.name));
-
-        console.log(sortedLegendaryWeaponArray)
-        return sortedLegendaryWeaponArray;
+        console.log(perkList)
+        return perkList;
         
 
     } 

@@ -1,14 +1,14 @@
 import React from 'react'
 import SinglePerkList from './single perk list/SinglePerkList'
 
-const RollList = () => {
+const RollList = (selectedWeapon) => {
   return (
     <div className="rollList bg-red-800 flex h-full w-full">
-        <SinglePerkList PerkName={"Barrell"}/>
-        <SinglePerkList PerkName={"Magazine"}/>
-        <SinglePerkList PerkName={"Trait 1"}/>
-        <SinglePerkList PerkName={"Trait 2"}/>
-        <SinglePerkList PerkName={"Origin Trait"}/>
+        <SinglePerkList Perks={"Barrell"}/>
+        <SinglePerkList Perks={"Magazine"}/>
+        <SinglePerkList Perks={"Trait 1"}/>
+        <SinglePerkList Perks={"Trait 2"}/>
+        <SinglePerkList Perks={"Origin Trait"}/>
     </div>
   )
 }

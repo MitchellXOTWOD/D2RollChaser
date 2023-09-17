@@ -30,7 +30,7 @@ const Home = ({selectedWeapon, setSelectedItem}) => {
           <Image src={screenshot} height={1080} width={1920} alt="weapon-screenshot" className=""/>
         </div>
         <div className="bottomRow h-1/2">
-          <RollList/>
+          <RollList selectedWeapon={selectedWeapon}/>
         </div>
       </div>}
     </div>

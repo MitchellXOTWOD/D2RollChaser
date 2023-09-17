@@ -3,6 +3,7 @@
 import WeaponList from "@components/weaponList/WeaponList"
 import { useEffect, useState } from "react"
 import { getWeapons } from "@utils/getWeapons"
+import { getWeaponPerks } from "@utils/getWeaponPerks"
 
 const Sidebar = ({setSelectedItem}) => {
   const [weapons, setWeapons] = useState([]) //empty array for initial state
@@ -18,8 +19,13 @@ const Sidebar = ({setSelectedItem}) => {
     setWeapons(_weapons);
   }
 
+  const fetchTraits = async () => {
+    const _perks = await getWeaponPerks();
+  }
+
   useEffect(() => {
     fetchWeapons()
+    fetchTraits()
   }, [])
 
   return (
