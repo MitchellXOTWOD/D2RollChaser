@@ -1,8 +1,19 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 
-const SinglePerkList = ({Perks}) => {
+const SinglePerkList = ({Perks, Type}) => {
+  if(!Perks){
+    return <p>Loading...</p>
+  }
+
   return (
-    <div className='w-1/5 h-full bg-slate-800'>{Perks}</div>
+    <div className='h-full bg-slate-800'>
+      <h2 className='mb-5'>{Type}</h2>
+      <ul>
+        {Perks.map((perk, index) => (
+          <li key={index}>{perk.name}</li>
+        ))}
+      </ul>
+    </div>
   )
 }
 

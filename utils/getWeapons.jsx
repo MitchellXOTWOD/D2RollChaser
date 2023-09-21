@@ -50,10 +50,7 @@ export const getWeapons = async () => {
 
         const sortedLegendaryWeaponArray = legendaryWeaponArray.sort((a, b) => a.displayProperties.name.localeCompare(b.displayProperties.name));
 
-        console.log(sortedLegendaryWeaponArray)
         return sortedLegendaryWeaponArray;
-        
-
     } 
     
     catch (error) {

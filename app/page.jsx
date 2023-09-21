@@ -18,7 +18,6 @@ const Home = ({selectedWeapon, setSelectedItem}) => {
   useEffect(() => {
     if(selectedWeapon.length !== 0){
       setIsWeaponSelected(true);
-      console.log(screenshot);
     }
   }, [selectedWeapon])
 

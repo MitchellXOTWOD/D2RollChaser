@@ -19,13 +19,8 @@ const Sidebar = ({setSelectedItem}) => {
     setWeapons(_weapons);
   }
 
-  const fetchTraits = async () => {
-    const _perks = await getWeaponPerks();
-  }
-
   useEffect(() => {
     fetchWeapons()
-    fetchTraits()
   }, [])
 
   return (
