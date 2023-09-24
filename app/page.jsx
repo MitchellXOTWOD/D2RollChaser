@@ -11,7 +11,7 @@ import Image from "next/image"
 
 const Home = ({selectedWeapon, setSelectedItem}) => {
 
-  const [isSmallScreen, setIsSmallScreen] = useState(window.innerWidth < 768);
+  const [isSmallScreen, setIsSmallScreen] = useState();
   const [isWeaponSelected, setIsWeaponSelected] = useState(false);
   const [openSidebar, setOpenSidebar] = useState(true);
 

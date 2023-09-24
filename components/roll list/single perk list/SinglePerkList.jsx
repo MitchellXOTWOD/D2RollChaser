@@ -10,7 +10,7 @@ const SinglePerkList = ({Perks, Type}) => {
       <h2 className='mb-5'>{Type}</h2>
       <ul>
         {Perks.map((perk, index) => (
-          <li key={index}>{perk.name}</li>
+          <li key={index} className='mb-3'>{perk.name}</li>
         ))}
       </ul>
     </div>
