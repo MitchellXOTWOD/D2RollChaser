@@ -65,8 +65,6 @@ export const getWeaponPerks = async (selectedWeapon) => {
             });
         }
 
-        console.log(tempList)
-
         perkList.push(tempList);}   
     
         return perkList;       

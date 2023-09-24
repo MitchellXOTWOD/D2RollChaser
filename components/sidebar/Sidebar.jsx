@@ -3,11 +3,9 @@
 import WeaponList from "@components/weaponList/WeaponList"
 import { useEffect, useState } from "react"
 import { getWeapons } from "@utils/getWeapons"
-import { getWeaponPerks } from "@utils/getWeaponPerks"
 
-const Sidebar = ({setSelectedItem}) => {
+const Sidebar = ({setSelectedItem, openSidebar, setOpenSidebar}) => {
   const [weapons, setWeapons] = useState([]) //empty array for initial state
-  const [openSidebar, setOpenSidebar] = useState(true);
 
   const toggleSidebar = () => {
     setOpenSidebar(!openSidebar);

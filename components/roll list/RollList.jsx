@@ -21,10 +21,10 @@ const RollList = ({selectedWeapon}) => {
   },[selectedWeapon])
 
   return (
-     <div className="rollList bg-red-800 flex h-full w-full">
-        {loading && <p className='m-auto'>Loading...</p>}
+     <div className="rollList bg-slate-800 flex h-full w-full">
+        {loading && <p className='m-auto p-36'>Loading...</p>}
         {!loading && 
-        <div className='flex w-full h-full '>
+        <div className='flex w-full h-full py-5'>
           {weaponPerks.filter(perks => perks[0].itemType!=='')
           .map((perks, index)=> (
             <div key={index} className='w-full'>
