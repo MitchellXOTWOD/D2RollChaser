@@ -14,7 +14,7 @@ const RootLayout = () => {
       }
 
 return (
-    <html lang="en">
+    <html lang="en" className='html'>
         <head>
             <title>D2 Roll Chaser</title>
         </head>

@@ -3,7 +3,7 @@ import Image from "next/image"
 
 const Navbar = () => {
   return (
-    <nav className="navbar bg-slate-800 flex items-center w-full py-2 md:py-0 md:h-20">
+    <nav className="navbar  bg-slate-800 flex items-center w-full py-2 md:py-0 md:h-20">
         <div className="pl-5">
             <Link href="/" className="flex gap-2 items-center">
                 <Image
