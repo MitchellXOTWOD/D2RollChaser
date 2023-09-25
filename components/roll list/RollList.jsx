@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import SinglePerkList from './single perk list/SinglePerkList'
 import { getWeaponPerks } from "@utils/getWeaponPerks"
 
-const RollList = ({selectedWeapon, isSmallScreen}) => {
+const RollList = ({selectedWeapon, isSmallScreen, refreshes}) => {
 
   const [loading, setLoading] = useState(false);
   const [weaponPerks, setWeaponPerks] = useState([]);
@@ -28,7 +28,7 @@ const RollList = ({selectedWeapon, isSmallScreen}) => {
           {weaponPerks.filter(perks => perks[0].itemType!=='')
           .map((perks, index)=> (
             <div key={index} className='w-full'>
-              <SinglePerkList Perks={perks} Type={perks[0].itemType} isSmallScreen={isSmallScreen}/>
+              <SinglePerkList Perks={perks} Type={perks[0].itemType} isSmallScreen={isSmallScreen} refreshes={refreshes}/>
             </div>
           ))}          
         </div>}
