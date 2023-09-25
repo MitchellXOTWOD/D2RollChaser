@@ -14,12 +14,12 @@ const RootLayout = () => {
       }
 
 return (
-    <html lang="en" className='h-screen'>
+    <html lang="en">
         <head>
             <title>D2 Roll Chaser</title>
         </head>
-        <body className='text-center h-full'>    
-            <main className='app h-full'>
+        <body className='text-center'>    
+            <main className='app'>
             <Navbar/>  
             <Home selectedWeapon={selectedWeapon} setSelectedItem={setSelectedItem}/>          
             </main>

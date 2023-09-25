@@ -61,7 +61,9 @@ export const getWeaponPerks = async (selectedWeapon) => {
             const item = itemData[itemHash];
             tempList.push({
                 name: item.displayProperties.name,
-                itemType: item.itemTypeDisplayName
+                itemType: item.itemTypeDisplayName,
+                hasIcon: item.displayProperties.hasIcon,
+                icon: bungieAPI+item.displayProperties.icon
             });
         }
 

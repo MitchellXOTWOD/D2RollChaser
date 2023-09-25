@@ -23,7 +23,7 @@ const Sidebar = ({setSelectedItem, openSidebar, setOpenSidebar}) => {
 
   return (
     <>
-      {openSidebar && <aside className="bg-slate-800 w-full h-screen  
+      {openSidebar && <aside className="bg-slate-800 w-full h-full 
       overflow-auto scrollbar-thin scrollbar-thumb-gray-800 scrollbar-track-gray-400
       md:w-fit min-w-fit">
         {/* Show loading if weapons have not been fulfilled */}
