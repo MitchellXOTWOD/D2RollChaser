@@ -36,7 +36,8 @@ const Home = ({selectedWeapon, setSelectedItem}) => {
   return (
     <div className="page-container h-full md:flex bg-dark">
       <Sidebar setSelectedItem={setSelectedItem} openSidebar={openSidebar} setOpenSidebar={setOpenSidebar}/>
-      {isWeaponSelected && (isSmallScreen ? !openSidebar : true) && <div className="weapon-container pb-5 flex flex-col md:h-auto w-full space-y-7 pt-5 md:px-36 overflow-y-auto">
+      {isWeaponSelected && (isSmallScreen ? !openSidebar : true) && <div className="weapon-container pb-5 flex flex-col md:h-auto w-full space-y-7 pt-5 md:px-36 overflow-y-auto
+      scrollbar-thin scrollbar-thumb-gray-800 scrollbar-track-gray-400">
         <h1 className="font-medium">{selectedWeapon.displayProperties.name}</h1>
         <div className="weapon-ss self-center md:w-1/2 w-full" >
           <Image src={screenshot} height={1080} width={1920} alt="weapon-screenshot"/>
