@@ -14,7 +14,8 @@ const Home = ({selectedWeapon, setSelectedItem}) => {
   const [isSmallScreen, setIsSmallScreen] = useState();
   const [isWeaponSelected, setIsWeaponSelected] = useState(false);
   const [openSidebar, setOpenSidebar] = useState(true);
-  const [refreshes, setRefreshes] = useState(0);
+  const [refreshes, setRefreshes] = useState(1);
+  const [odds, setOdds] = useState();
 
   const screenshot = `${bungieAPI}${selectedWeapon.screenshot}`;
 
@@ -44,11 +45,14 @@ const Home = ({selectedWeapon, setSelectedItem}) => {
           <Image src={screenshot} height={1080} width={1920} alt="weapon-screenshot"/>
         </div>
         <div className="bottomRow md:h-auto">
-          <RollList selectedWeapon={selectedWeapon} isSmallScreen={isSmallScreen} refreshes={refreshes}/>
+          <RollList selectedWeapon={selectedWeapon} isSmallScreen={isSmallScreen} refreshes={refreshes} setOdds={setOdds}/>
         </div>
-        <button onClick={() => setRefreshes((x) => x+1)} className="nice-button md:w-1/6 self-center text-blue-700 hover:text-white border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:border-blue-500 dark:text-blue-500 dark:hover:text-white dark:hover:bg-blue-500 dark:focus:ring-blue-800">
-          Roll Weapon
-        </button>
+        <div className="flex items-center justify-center space-x-5">
+          <button onClick={() => setRefreshes((x) => x+1)} className="nice-button md:w-1/6 self-center text-blue-700 hover:text-white border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:border-blue-500 dark:text-blue-500 dark:hover:text-white dark:hover:bg-blue-500 dark:focus:ring-blue-800">
+            Roll Weapon
+          </button>
+          <p>rolled {refreshes} time(s) with a {odds.toFixed(3)}% chance</p>
+        </div>
       </div>}
     </div>
   )

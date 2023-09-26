@@ -17,12 +17,15 @@ const SinglePerkList = ({Perks, Type, isSmallScreen, refreshes}) => {
     <div className='h-full bg-slate-800 flex flex-col items-center'>
       <h2 className='mb-5'>{Type}</h2>
       <ul>
-        {Perks.map((perk, index) => (
-          <li key={index} className={`mb-3 flex items-center ${index === randomIndex ? 'bg-yellow-500' : ''}`}>
-            {perk.hasIcon && <Image src={perk.icon} height={50} width={50} alt="weapon-screenshot" className=""/>}
-            {!isSmallScreen && perk.name}
-          </li>
-        ))}
+      {/* do not include trait locked perks */}
+      {Perks.map((perk, index) => (
+        perk.name !== "Trait Locked" ? (
+        <li key={index} className={`mb-3 flex items-center ${index === randomIndex ? 'bg-yellow-500' : ''}`}>
+          {perk.hasIcon && <Image src={perk.icon} height={50} width={50} alt="weapon-screenshot" className="" />}
+          {!isSmallScreen && perk.name}
+        </li>
+  ) : null)
+  )}
       </ul>
     </div>
   )

@@ -2,10 +2,12 @@ import React, { useEffect, useState } from 'react'
 import SinglePerkList from './single perk list/SinglePerkList'
 import { getWeaponPerks } from "@utils/getWeaponPerks"
 
-const RollList = ({selectedWeapon, isSmallScreen, refreshes}) => {
+const RollList = ({selectedWeapon, isSmallScreen, refreshes, setOdds}) => {
 
   const [loading, setLoading] = useState(false);
   const [weaponPerks, setWeaponPerks] = useState([]);
+
+  const perkOdds = 1;
 
   const fetchPerks = async () => {
     setLoading(true);
@@ -18,7 +20,19 @@ const RollList = ({selectedWeapon, isSmallScreen, refreshes}) => {
     if(selectedWeapon){
       fetchPerks();
     }
-  },[selectedWeapon])
+  },[selectedWeapon]);
+
+  useEffect(() => {
+    if (!loading) {
+      // Calculate the overall probability dynamically
+      const totalProbability = weaponPerks
+      .filter(perks => perks[0].itemType!=='')
+      .reduce((total, perks) => {
+        return total * (1 / perks.length);
+      }, 1) * 100; 
+      setOdds(totalProbability);
+    }
+  }, [loading, weaponPerks, setOdds]);
 
   return (
      <div className="rollList bg-slate-800 flex h-fit w-full">
