@@ -28,6 +28,8 @@ const Home = ({selectedWeapon, setSelectedItem}) => {
     setIsSmallScreen(window.innerWidth < 768);
   };
 
+  setRefreshes(1);
+
   window.addEventListener('resize', handleResize);
 
   return () => {
