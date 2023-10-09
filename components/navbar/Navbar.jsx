@@ -11,7 +11,7 @@ const Navbar = () => {
                 alt="destinyLogo"
                 width={50}
                 height={50}
-                className="object-contain w-fit h-fit"
+                className=""
                 unoptimized>
                 </Image>
                 <p className="text-white text-3xl md:text-4xl">D2 Roll Chaser</p>
