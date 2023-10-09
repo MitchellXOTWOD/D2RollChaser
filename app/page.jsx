@@ -44,7 +44,7 @@ const Home = ({selectedWeapon, setSelectedItem}) => {
       scrollbar-thin scrollbar-thumb-gray-800 scrollbar-track-gray-400">
         <h1 className="font-medium">{selectedWeapon.displayProperties.name}</h1>
         <div className="weapon-ss self-center md:w-1/2 w-full" >
-          <Image src={screenshot} height={1080} width={1920} alt="weapon-screenshot"/>
+          <Image src={screenshot} height={1080} width={1920} alt="weapon-screenshot" unoptimized/>
         </div>
         <div className="bottomRow md:h-auto">
           <RollList selectedWeapon={selectedWeapon} isSmallScreen={isSmallScreen} refreshes={refreshes} setOdds={setOdds}/>
