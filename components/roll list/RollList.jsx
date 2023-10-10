@@ -35,7 +35,7 @@ const RollList = ({selectedWeapon, isSmallScreen, refreshes, setOdds}) => {
 
   return (
      <div className="rollList bg-slate-800 flex h-fit w-full">
-        {loading && <p className='m-auto p-36'>Loading...</p>}
+        {loading && <p className='m-auto p-36 text-white'>Loading...</p>}
         {!loading && 
         <div className='flex w-full h-auto py-5'>
           {weaponPerks.filter(perks => perks[0].itemType!=='')

@@ -42,14 +42,14 @@ const SinglePerkList = ({Perks, Type, isSmallScreen, refreshes, arrayOfRandomInd
 
   return (
     <div className='h-full bg-slate-800 flex flex-col items-center'>
-      <h2 className='mb-5'>{Type}</h2>
-      <label htmlFor='perkNum'>Number of {Type}s:</label>
+      <h2 className='mb-5 text-white'>{Type}</h2>
+      <label htmlFor='perkNum' className='text-white'>Number of {Type}s:</label>
       <input type='text' id='perkNum' name='perkNum' placeholder={"select a number"} onChange={handlePerkNumChange} className='text-black'/><br/>
       <ul>
       {/* do not include trait locked perks */}
       {Perks.map((perk, index) => (
         perk.name !== "Trait Locked" ? (
-        <li key={index} className={`mb-3 flex items-center ${randomIndex.includes(index) ? 'bg-yellow-500' : ''}`}>
+        <li key={index} className={`mb-3 flex items-center text-white ${randomIndex.includes(index) ? 'bg-yellow-500' : ''}`}>
           {perk.hasIcon && <Image src={perk.icon} height={50} width={50} alt="weapon-screenshot" className="" unoptimized/>}
           {!isSmallScreen && perk.name}
         </li>

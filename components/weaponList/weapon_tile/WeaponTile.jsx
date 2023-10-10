@@ -19,7 +19,7 @@ const WeaponTile = ({weapon}) => {
             <Image src={WeaponIcon} width={48} height={48} alt="weapon logo" unoptimized/>
             <Image src={seasonIcon} width={48} height={48} alt="season-icon" className='absolute' unoptimized/>
           </div>
-          <p>{weapon.displayProperties.name}</p>
+          <p className='text-white'>{weapon.displayProperties.name}</p>
         </div>
       </div>
     </Link>
