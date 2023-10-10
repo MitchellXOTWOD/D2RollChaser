@@ -6,8 +6,7 @@ const RollList = ({selectedWeapon, isSmallScreen, refreshes, setOdds}) => {
 
   const [loading, setLoading] = useState(false);
   const [weaponPerks, setWeaponPerks] = useState([]);
-
-  const perkOdds = 1;
+  const [arrayOfRandomIndexArrays, setArrayOfRandomIndexArrays] = useState([]);
 
   const fetchPerks = async () => {
     setLoading(true);
@@ -27,12 +26,12 @@ const RollList = ({selectedWeapon, isSmallScreen, refreshes, setOdds}) => {
       // Calculate the overall probability dynamically
       const totalProbability = weaponPerks
       .filter(perks => perks[0].itemType!=='')
-      .reduce((total, perks) => {
-        return total * (1 / perks.length);
+      .reduce((total, perks, index) => {
+        return total * (arrayOfRandomIndexArrays[index].length / perks.length);
       }, 1) * 100; 
       setOdds(totalProbability);
     }
-  }, [loading, weaponPerks, setOdds]);
+  }, [loading, refreshes]);
 
   return (
      <div className="rollList bg-slate-800 flex h-fit w-full">
@@ -42,7 +41,7 @@ const RollList = ({selectedWeapon, isSmallScreen, refreshes, setOdds}) => {
           {weaponPerks.filter(perks => perks[0].itemType!=='')
           .map((perks, index)=> (
             <div key={index} className='w-full'>
-              <SinglePerkList Perks={perks} Type={perks[0].itemType} isSmallScreen={isSmallScreen} refreshes={refreshes}/>
+              <SinglePerkList Perks={perks} Type={perks[0].itemType} isSmallScreen={isSmallScreen} refreshes={refreshes} arrayOfRandomIndexArrays={arrayOfRandomIndexArrays} setArrayOfRandomIndexArrays={setArrayOfRandomIndexArrays}/>
             </div>
           ))}          
         </div>}

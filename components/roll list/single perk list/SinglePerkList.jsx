@@ -1,7 +1,7 @@
 import Image from 'next/image'
 import { useEffect, useState } from 'react';
 
-const SinglePerkList = ({Perks, Type, isSmallScreen, refreshes}) => {
+const SinglePerkList = ({Perks, Type, isSmallScreen, refreshes, arrayOfRandomIndexArrays, setArrayOfRandomIndexArrays}) => {
 
   const [randomIndex, setRandomIndex] = useState([]);
   const [perkNum, setPerkNum] = useState(1);
@@ -24,7 +24,7 @@ const SinglePerkList = ({Perks, Type, isSmallScreen, refreshes}) => {
   useEffect(() => {
     //randomIndexArray holds a dynamic amount of values that will be randomly selected as perks
     let randomIndexArray = [];
-
+    setArrayOfRandomIndexArrays([]);
     //do not allow duplicate numbers in the array. If the number is already in the array, roll another number.
     while (randomIndexArray.length < perkNum) {
     let randomIndex = Math.floor(Math.random() * Perks.length);
@@ -35,6 +35,8 @@ const SinglePerkList = ({Perks, Type, isSmallScreen, refreshes}) => {
     }
     }
     setRandomIndex(randomIndexArray);
+    //this is not working
+    arrayOfRandomIndexArrays.push(randomIndexArray);
   }  
   , [refreshes])
 
