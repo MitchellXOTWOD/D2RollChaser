@@ -27,7 +27,7 @@ const Sidebar = ({setSelectedItem, openSidebar, setOpenSidebar}) => {
       overflow-auto scrollbar-thin scrollbar-thumb-gray-800 scrollbar-track-gray-400
       md:w-fit min-w-fit">
         {/* Show loading if weapons have not been fulfilled */}
-        {weapons.length == 0 && <p className="px-32">Loading...</p>}
+        {weapons.length == 0 && <p className="px-32 text-white">Loading...</p>}
         <WeaponList weapons={weapons} setSelectedItem={setSelectedItem} toggleSidebar={toggleSidebar}/>
       </aside>}
 
