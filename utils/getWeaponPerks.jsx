@@ -45,20 +45,26 @@ export const getWeaponPerks = async (selectedWeapon) => {
         //array of perk arrays. Inside is one array for barrels, one for magazine, so forth. 
         const perkList = [];
 
-        for(const index in selectedWeapon.sockets.socketCategories.find(socketCategory => socketCategory.socketCategoryHash === 4241085061).socketIndexes){
+        const perkCategory = selectedWeapon.sockets.socketCategories.find(socketCategory => socketCategory.socketCategoryHash === 4241085061);
+
+        for(const index in perkCategory.socketIndexes){
         //perkHashIndex uses the socketCategories to make sure we are getting the correct index of perks for each weapon
         const perkHashIndex = selectedWeapon.sockets.socketCategories.find(socketCategory => socketCategory.socketCategoryHash === 4241085061).socketIndexes[index];
         //uses the perkHashIndex to find the randomizedperkPlugSetHash in the socketEntries. 
-        const randomizedPerkHash = selectedWeapon.sockets.socketEntries[perkHashIndex]?.randomizedPlugSetHash || selectedWeapon.sockets.socketEntries[perkHashIndex]?.reusablePlugSetHash;
+        const randomizedPerkHash = selectedWeapon.sockets.socketEntries[perkHashIndex]?.randomizedPlugSetHash ?? selectedWeapon.sockets.socketEntries[perkHashIndex]?.reusablePlugSetHash;
+        if (!randomizedPerkHash) continue;
         //List of all of the perk options in the api
         const reusablePerkPlugItemsData = perksData[randomizedPerkHash]?.reusablePlugItems;
+        if (!reusablePerkPlugItemsData) continue;
         //array to store the perk perk string name
         const tempList = [];
 
         //go through the perk options, push the perk hash to the perkPerks array.
-        for (const [perkKey, perkValue] of Object.entries(reusablePerkPlugItemsData)) {
-            const itemHash = perkValue.plugItemHash;
+        for (const perk of Object.values(reusablePerkPlugItemsData)) {
+            const itemHash = perk.plugItemHash;
             const item = itemData[itemHash];
+            //filter out enhanced perks and empty perks
+            if(item.itemTypeDisplayName.includes("Enhanced") || item.displayProperties.name.includes("Empty Traits Socket")) continue;
             tempList.push({
                 name: item.displayProperties.name,
                 itemType: item.itemTypeDisplayName,
