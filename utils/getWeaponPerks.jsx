@@ -9,7 +9,7 @@ export const getWeaponPerks = async (selectedWeapon) => {
         const manifestResponse = await fetch(`${manifestAPI}`, {
             method: 'GET',
             headers: {
-                'X-API-Key': 'e6440ecb340443479d9cdee3794be2d1'
+                'X-API-Key': process.env.NEXT_PUBLIC_BUNGIE_API_KEY
             }
         });
 
