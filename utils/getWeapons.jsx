@@ -1,59 +1,54 @@
 "use client"
 
 import { bungieAPI, manifestAPI } from '@api/bungieApi';
+import { getCachedData, setCachedData, isCacheValid, updateCacheVersion, ITEM_DATA_KEY } from '@utils/cache';
 
-// Define the function to get weapons
 export const getWeapons = async () => {
     try {
-        // Fetch the manifest data
-        const manifestResponse = await fetch(`${manifestAPI}`, {
+        const manifestResponse = await fetch(manifestAPI, {
             method: 'GET',
             headers: {
                 'X-API-Key': process.env.NEXT_PUBLIC_BUNGIE_API_KEY
             }
         });
 
-        // Check for error
-        if (!manifestResponse.ok) {
-            throw new Error('Failed to fetch manifest data');
-        }
+        if (!manifestResponse.ok) throw new Error('Failed to fetch manifest data');
 
-        // Return JSON data
         const manifestData = await manifestResponse.json();
-        
+        const manifestVersion = manifestData.Response.version;
 
-        // Handle successful call
-        const itemDataPath = manifestData.Response.jsonWorldComponentContentPaths.en.DestinyInventoryItemDefinition;
-        const itemDataUrl = `${bungieAPI}${itemDataPath}`;
+        let itemData;
+        const cacheValid = await isCacheValid(manifestVersion);
 
-        const itemResponse = await fetch(itemDataUrl, { method: 'GET' });
-
-        if (!itemResponse.ok) {
-            throw new Error('Failed to fetch item data');
+        if (cacheValid) {
+            itemData = await getCachedData(ITEM_DATA_KEY);
         }
-        
-        const itemData = await itemResponse.json();
+
+        if (!itemData) {
+            const itemDataPath = manifestData.Response.jsonWorldComponentContentPaths.en.DestinyInventoryItemDefinition;
+            const itemResponse = await fetch(`${bungieAPI}${itemDataPath}`, { method: 'GET' });
+            if (!itemResponse.ok) throw new Error('Failed to fetch item data');
+
+            itemData = await itemResponse.json();
+
+            await setCachedData(ITEM_DATA_KEY, itemData);
+            await updateCacheVersion(manifestVersion);
+        }
 
         const legendaryWeaponArray = [];
 
-        for (const key in itemData)
-        {
+        for (const key in itemData) {
             const item = itemData[key];
-            const itemTier = item.inventory.tierTypeName;
-            const itemType = item.itemType;
-
-            //ItemType 3 is weapon. We want all weapons that are legendary
-            if (itemTier === 'Legendary' && itemType === 3) {
+            if (item.inventory?.tierTypeName === 'Legendary' && item.itemType === 3) {
                 legendaryWeaponArray.push(item);
             }
         }
 
-        const sortedLegendaryWeaponArray = legendaryWeaponArray.sort((a, b) => a.displayProperties.name.localeCompare(b.displayProperties.name));
+        return legendaryWeaponArray.sort((a, b) =>
+            a.displayProperties.name.localeCompare(b.displayProperties.name)
+        );
 
-        return sortedLegendaryWeaponArray;
-    } 
-    
-    catch (error) {
+    } catch (error) {
         console.error('Error:', error);
     }
 };
